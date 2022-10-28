@@ -1,0 +1,94 @@
+﻿@page "/prestamos"
+@inject PrestamosBLL prestamosBLL
+
+<EditForm Model="lista">
+    <DataAnnotationsValidator />
+   <form class="input-group align-items-end card-body">
+        <div class="container overflow-hidden">
+            <div class="row gy-3">
+                <div class="col-md-6">
+                    <label>Filtro</label>
+                    <select class="form-control" @bind="Filtro">
+                        <option value="0"> Seleccione uno </option>
+                        <option value="1">PrestamoId</option>
+                        <option value="2">PersonaId</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Buscar</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" @bind="Criterio" />
+                            <div class="input-group-append">
+                                <button type="button" class="input-group-text btn btn-primary" @onclick="Buscar"> <i
+                                        class="oi oi-magnifying-glass" /></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>PrestamoId</th>
+                <th>Fecha Inicio </th>
+                <th>Fecha vencimiento</th>
+                <th>PersonaId</th>
+                <th>Concepto</th>
+                <th>Monto</th>
+                <th>Balance</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var prestamo in lista)
+            {
+                <tr>
+                    <td>@prestamo.PrestamoId</td>
+                    <td>@prestamo.Fecha</td>
+                    <td>@prestamo.Vence</td>
+                    <th>@prestamo.PersonaId</th>
+                    <th>@prestamo.Concepto</th>
+                    <th>@prestamo.Monto</th>
+                    <th>@prestamo.Balance</th>
+                     <td><a href="prestamo/@prestamo.PrestamoId">Ver</a></td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+</EditForm>
+
+@code
+{
+    public List<Prestamos> lista { get; set; } = new List<Prestamos>();
+    public string Filtro { get; set; }
+    public string Criterio { get; set; }
+    public void Buscar()
+    {
+        lista = prestamosBLL.GetList(o => true);
+        if (Criterio != null)
+        {
+            switch (Filtro)
+            {
+                case "0":
+                    lista = prestamosBLL.GetList(o => true);
+                    break;
+                case "1":
+                    lista = prestamosBLL.GetList(o => o.PrestamoId.ToString() == (Criterio));
+                    break;
+                case "3":
+                    lista = prestamosBLL.GetList(o => o.PersonaId.ToString() == (Criterio));
+                    break;
+            }
+        }
+        else
+        {
+            lista = prestamosBLL.GetList(o => true);
+        }
+    }
+
+}

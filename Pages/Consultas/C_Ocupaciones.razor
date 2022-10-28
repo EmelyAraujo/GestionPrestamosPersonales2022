@@ -1,0 +1,88 @@
+﻿@page "/ocupaciones"
+@inject OcupacionesBLL ocupacionBLL
+
+<EditForm Model="lista">
+    <DataAnnotationsValidator />
+    <form class="input-group align-items-end card-body">
+        <div class="container overflow-hidden">
+            <div class="row gy-3">
+                <div class="col-md-6">
+                    <label>Filtro</label>
+                    <select class="form-control" @bind="Filtro">
+                        <option value="0"> Seleccione uno </option>
+                        <option value="1">OcupacionId</option>
+                        <option value="2">Descripcion</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Buscar</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" @bind="Criterio" />
+                            <div class="input-group-append">
+                                <button type="button" class="input-group-text btn btn-primary" @onclick="Buscar"> <i
+                                        class="oi oi-magnifying-glass" /></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>OcupacionId</th>
+                <th>Descripcion</th>
+                <th>Salario</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ocupacion in lista)
+            {
+                <tr>
+                    <td>@ocupacion.OcupacionId</td>
+                    <td>@ocupacion.Descripcion</td>
+                    <td>@ocupacion.Salario</td>
+                    <td><a href="ocupacion/@ocupacion.OcupacionId">Ver</a></td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+</EditForm>
+
+@code
+{
+    public List<Ocupaciones> lista { get; set; } = new List<Ocupaciones>();
+    public string Filtro { get; set; }
+    public string Criterio { get; set; }
+    public void Buscar()
+    {
+        lista = ocupacionBLL.GetList(o => true);
+        if (Criterio != null)
+        {
+            switch (Filtro)
+            {
+                case "0":
+                    lista = ocupacionBLL.GetList(o => true);
+                    break;
+                case "1":
+                    lista = ocupacionBLL.GetList(o => o.OcupacionId.ToString() == (Criterio));
+                    break;
+                case "3":
+                    lista = ocupacionBLL.GetList(o => o.Descripcion.ToString() == (Criterio));
+                    break;
+            }
+        }
+        else
+        {
+            lista = ocupacionBLL.GetList(o => true);
+        }
+    }
+
+}

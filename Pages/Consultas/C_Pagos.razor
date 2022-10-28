@@ -1,0 +1,91 @@
+﻿@page "/pagos"
+@inject PagosBLL pagosBLL
+
+<EditForm Model="lista">
+    <DataAnnotationsValidator />
+    <form class="input-group align-items-end card-body">
+        <div class="container overflow-hidden">
+            <div class="row gy-3">
+                <div class="col-md-6">
+                    <label>Filtro</label>
+                    <select class="form-control" @bind="Filtro">
+                        <option value="0"> Seleccione uno </option>
+                        <option value="1">PagoId</option>
+                        <option value="2">PersonaId</option>
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Buscar</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" @bind="Criterio" />
+                            <div class="input-group-append">
+                                <button type="button" class="input-group-text btn btn-primary" @onclick="Buscar"> <i
+                                        class="oi oi-magnifying-glass" /></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>PagoId</th>
+                <th>Fecha </th>
+                <th>PersonaId</th>
+                <th>Concepto</th>
+                <th>Monto</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pago in lista)
+            {
+                <tr>
+                    <td>@pago.PagoId</td>
+                    <td>@pago.Fecha</td>
+                    <th>@pago.PersonaId</th>
+                    <th>@pago.Concepto</th>
+                    <th>@pago.Monto</th>
+                    <td><a href="pago/@pago.PagoId">Ver</a></td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+</EditForm>
+
+@code
+{
+    public List<Pagos> lista { get; set; } = new List<Pagos>();
+    public string Filtro { get; set; }
+    public string Criterio { get; set; }
+    public void Buscar()
+    {
+        lista = pagosBLL.GetList(o => true);
+        if (Criterio != null)
+        {
+            switch (Filtro)
+            {
+                case "0":
+                    lista = pagosBLL.GetList(o => true);
+                    break;
+                case "1":
+                    lista = pagosBLL.GetList(o => o.PagoId.ToString() == (Criterio));
+                    break;
+                case "3":
+                    lista = pagosBLL.GetList(o => o.PersonaId.ToString() == (Criterio));
+                    break;
+            }
+        }
+        else
+        {
+            lista = pagosBLL.GetList(o => true);
+        }
+    }
+
+}

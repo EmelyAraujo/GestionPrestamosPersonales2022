@@ -1,0 +1,177 @@
+﻿@page "/ocupacion"
+@page "/ocupacion/{OcupacionId:int}"
+
+@inject OcupacionesBLL OcupacionesBLL
+@inject NotificationService notificationService
+
+
+
+<EditForm Model="ocupacion" OnValidSubmit="Guardar">
+    <DataAnnotationsValidator />
+    <div class="card">
+        <div class="card-header">
+            <h3>Registro de Ocupacion</h3>
+        </div>
+        <div class="card-body">
+            @*OcupacionId*@
+            <div class="form-row align-items-center">
+                <div class="col">
+                    <div class="card-body">
+                        <label>OcupacionId</label>
+                        <div class="input-group">
+                            <InputNumber @bind-Value="ocupacion.OcupacionId" class="form-control col-4" />
+                            <div class="input-group-append">
+                                <button type="button" class="btn btn-primary input-group-text"
+                                    @onclick="Buscar">Buscar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @*Descripcion*@
+            <div class="mb-3">
+                <label>Descripcion</label>
+                <InputText @bind-Value="ocupacion.Descripcion" class="form-control" />
+                <ValidationMessage For="@(() => ocupacion.Descripcion)" />
+            </div>
+
+            @*Salario*@
+            <div class="mb-3">
+                <label>Salario</label>
+                <InputNumber @bind-Value="ocupacion.Salario" class="form-control" />
+                <ValidationMessage For="@(() => ocupacion.Salario)" />
+            </div>
+            <h1>
+                <span class="text-danger">@mensaje</span>
+            </h1>
+
+
+        </div>
+        <div class="card-footer">
+            <div class="form-group text-center" display: inline-block>
+                <button type="button" class="btn btn-lg btn-primary" @onclick="Nuevo">Nuevo</button>
+                <button type="submit" class="btn btn-lg btn-success">Guardar</button>
+                <button type="button" class="btn btn-lg btn-danger" @onclick="Eliminar">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int OcupacionId { get; set; }
+
+    public Ocupaciones ocupacion { get; set; } = new Ocupaciones();
+
+    public String mensaje { get; set; } = "";
+
+    public void Nuevo()
+    {
+        ocupacion = new Ocupaciones();
+    }
+    bool Validar()
+    {
+        return ocupacion.Descripcion.Contains(".");
+    }
+
+    protected override void OnInitialized()
+    {
+        if (OcupacionId > 0)
+        {
+            //si recibimos una {OcupacionId:int} por parametro asignarla
+            // y luego buscarla para que se vea en pantalla
+            this.ocupacion.OcupacionId = OcupacionId;
+            this.Buscar();
+        }
+    }
+
+    public void Guardar()
+    {
+        bool guardo;
+
+        if (!Validar())
+        {
+            mensaje = "hay errores, favor corregir";
+            return;
+        }
+
+        guardo = OcupacionesBLL.Guardar(ocupacion);
+
+        if (guardo)
+        {
+            ShowNotification(
+            new NotificationMessage
+            {
+                Severity = NotificationSeverity.Success,
+                Summary = "Guardado correctamente"
+            });
+
+            Nuevo();
+
+        }
+        else
+        {
+            ShowNotification(
+            new NotificationMessage
+            {
+                Severity = NotificationSeverity.Error,
+                Summary = "No se guardo correctamente."
+            });
+
+        }
+
+
+    }
+    private void Buscar()
+    {
+        if (ocupacion.OcupacionId > 0)
+        {
+            var encontrado = OcupacionesBLL.Buscar(ocupacion.OcupacionId);
+
+            if (encontrado != null)
+                this.ocupacion = encontrado;
+            else
+            {
+                ShowNotification(
+                new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Warning,
+                    Summary = "No Encontrado..."
+                });
+            }
+
+        }
+    }
+
+    public void Eliminar()
+    {
+        bool elimino;
+
+        elimino = OcupacionesBLL.Eliminar(ocupacion);
+
+        if (elimino)
+        {
+            Nuevo();
+            ShowNotification(
+            new NotificationMessage
+            {
+                Severity = NotificationSeverity.Success,
+                Summary = "Fue eliminado correctamente."
+            });
+        }
+        else
+        {
+            ShowNotification(
+            new NotificationMessage
+            {
+                Severity = NotificationSeverity.Error,
+                Summary = "No fue Eliminado, intentar nuevamente."
+            });
+        }
+    }
+    void ShowNotification(NotificationMessage message)
+    {
+        notificationService.Notify(message);
+
+    }
+}

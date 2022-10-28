@@ -1,0 +1,241 @@
+﻿@page "/persona"
+@page "/personas/{PersonasId:int}"
+
+@inject PersonasBLL PersonasBLL
+@inject OcupacionesBLL OcupacionesBLL
+@inject NotificationService notificationService
+
+
+
+<EditForm Model="persona" OnValidSubmit="Guardar">
+    <DataAnnotationsValidator />
+    <div class="card">
+        <div class="card-header">
+            <h3>Registro de Personas</h3>
+        </div>
+        <div class="card-body">
+            <div class="container overflow-hidden">
+                <div class="row gy-6">
+                    @*PersonaId*@
+                    <label>Persona ID</label>
+                    <div class="form-row align-items-center">
+                        <div class="col">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <InputNumber @bind-Value="persona.PersonaId" class="form-control col-4" />
+                                    <div class="input-group-append">
+                                        <button type="button" class="btn btn-primary input-group-text"
+                                            @onclick="Buscar">Buscar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*Nombre*@
+                    <div class="col-6">
+                        <label> Nombre</label>
+                        <div class="mb-3">
+                            <InputText @bind-Value="persona.Nombre" class="form-control" />
+                            <ValidationMessage For="@(() => persona.Nombre)" />
+                        </div>
+                    </div>
+                    @*Fecha de nacimiento*@
+                    <div class="col-6">
+                        <label>Fecha de nacimiento</label>
+                        <div class="mb-3">
+                            <InputDate @bind-Value="persona.FechaNacimiento" class="form-control" />
+                            <ValidationMessage For="@(() => persona.FechaNacimiento)" />
+                        </div>
+                    </div>
+                    @*Telefono*@
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label>Telefono</label>
+                            <InputText @bind-Value="persona.Telefono" class="form-control" />
+                            <ValidationMessage For="@(() => persona.Telefono)" />
+                        </div>
+                    </div>
+                    @*Celular*@
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label>Celular</label>
+                            <InputText @bind-Value="persona.Celular" class="form-control" />
+                            <ValidationMessage For="@(() => persona.Celular)" />
+                        </div>
+                    </div>
+                     @*Email*@
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label>Email</label>
+                            <InputText @bind-Value="persona.Email" class="form-control" />
+                            <ValidationMessage For="@(() => persona.Email)" />
+                        </div>
+
+                    </div>
+                    @*Direccion*@
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <label>Direccion</label>
+                            <InputText @bind-Value="persona.Direccion" class="form-control" />
+                            <ValidationMessage For="@(() => persona.Direccion)" />
+                        </div>
+                    </div>
+                     @*OcupacionId*@
+                    <div class="col-6">
+                        <div class="mb-3">
+                            <div class="col-6">
+                                <label>Ocupacion ID</label>
+                                <InputSelect class="form-select" @bind-Value="persona.OcupacionId">
+                                    <option value="0" disabled> Seleccione </option>
+                                    @foreach (var persona in listaOcupaciones)
+                                    {
+                                        <option value="@persona.OcupacionId"> @persona.OcupacionId</option>
+                                    }
+                                </InputSelect>
+                                <ValidationMessage For="@(() => persona.OcupacionId)" class="form-control" />
+                            </div>
+                        </div>
+                        @*Balance*@
+                        <div class="col-6">
+                            <div class="mb-3">
+                                <label>Balance</label>
+                                <InputNumber @bind-Value="persona.Balance" class="form-control" />
+                                <ValidationMessage For="@(() => persona.Balance)" />
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-6">
+
+                    </div>
+                </div>
+            </div>
+            <h1>
+                <span class="text-danger">@mensaje</span>
+            </h1>
+
+
+        </div>
+        <div class="card-footer">
+            <div class="form-group text-center" display: inline-block>
+                <button type="button" class="btn btn-lg btn-primary" @onclick="Nuevo">Nuevo</button>
+                <button type="submit" class="btn btn-lg btn-success">Guardar</button>
+                <button type="button" class="btn btn-lg btn-danger" @onclick="Eliminar">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int PersonasId { get; set; }
+
+    public int OcupacionId { get; set; }
+
+    public List<Ocupaciones> listaOcupaciones { get; set; } = new List<Ocupaciones>();
+
+    public Personas persona { get; set; } = new Personas();
+
+    public String mensaje { get; set; } = "";
+
+    public void Nuevo()
+    {
+        persona = new Personas();
+    }
+    
+
+    protected override void OnInitialized()
+    {
+        listaOcupaciones = OcupacionesBLL.GetList(o => true);
+        if (PersonasId > 0)
+        {
+
+            this.persona.PersonaId = PersonasId;
+            this.Buscar();
+        }
+    }
+
+    public void Guardar()
+    {
+        bool guardo;
+
+        guardo = PersonasBLL.Guardar(this.persona);
+
+        if (guardo)
+        {
+            ShowNotification(
+            new NotificationMessage
+            {
+                Severity = NotificationSeverity.Success,
+                Summary = "Guardado correctamente"
+            });
+
+            Nuevo();
+
+        }
+        else
+        {
+            ShowNotification(
+            new NotificationMessage
+            {
+                Severity = NotificationSeverity.Error,
+                Summary = "No se guardo correctamente."
+            });
+
+        }
+
+
+    }
+    private void Buscar()
+    {
+        if (persona.PersonaId > 0)
+        {
+            var encontrado = PersonasBLL.Buscar(persona.PersonaId);
+
+            if (encontrado != null)
+                this.persona = encontrado;
+            else
+            {
+                ShowNotification(
+                new NotificationMessage
+                {
+                    Severity = NotificationSeverity.Warning,
+                    Summary = "No Encontrado..."
+                });
+            }
+
+        }
+    }
+
+    public void Eliminar()
+    {
+        bool elimino;
+
+        elimino = PersonasBLL.Eliminar(persona);
+
+        if (elimino)
+        {
+            Nuevo();
+            ShowNotification(
+            new NotificationMessage
+            {
+                Severity = NotificationSeverity.Success,
+                Summary = "Fue eliminado correctamente."
+            });
+        }
+        else
+        {
+            ShowNotification(
+            new NotificationMessage
+            {
+                Severity = NotificationSeverity.Error,
+                Summary = "No fue Eliminado, intentar nuevamente."
+            });
+        }
+    }
+    void ShowNotification(NotificationMessage message)
+    {
+        notificationService.Notify(message);
+
+    }
+}
