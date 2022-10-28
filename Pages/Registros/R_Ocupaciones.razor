@@ -74,18 +74,16 @@
         return ocupacion.Descripcion.Contains(".");
     }
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
         if (OcupacionId > 0)
         {
-            //si recibimos una {OcupacionId:int} por parametro asignarla
-            // y luego buscarla para que se vea en pantalla
             this.ocupacion.OcupacionId = OcupacionId;
-            this.Buscar();
+            await this.Buscar();
         }
     }
 
-    public void Guardar()
+    public async Task Guardar()
     {
         bool guardo;
 
@@ -95,7 +93,7 @@
             return;
         }
 
-        guardo = OcupacionesBLL.Guardar(ocupacion);
+        guardo = await OcupacionesBLL.Guardar(ocupacion);
 
         if (guardo)
         {
@@ -122,11 +120,11 @@
 
 
     }
-    private void Buscar()
+    private async Task Buscar()
     {
         if (ocupacion.OcupacionId > 0)
         {
-            var encontrado = OcupacionesBLL.Buscar(ocupacion.OcupacionId);
+            var encontrado = await OcupacionesBLL.Buscar(ocupacion.OcupacionId);
 
             if (encontrado != null)
                 this.ocupacion = encontrado;
@@ -143,11 +141,10 @@
         }
     }
 
-    public void Eliminar()
+    public async Task Eliminar()
     {
-        bool elimino;
 
-        elimino = OcupacionesBLL.Eliminar(ocupacion);
+       bool elimino = await OcupacionesBLL.Eliminar(ocupacion);
 
         if (elimino)
         {

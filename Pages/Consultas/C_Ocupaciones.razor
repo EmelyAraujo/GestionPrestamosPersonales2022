@@ -61,27 +61,27 @@
     public List<Ocupaciones> lista { get; set; } = new List<Ocupaciones>();
     public string Filtro { get; set; }
     public string Criterio { get; set; }
-    public void Buscar()
+    public async Task Buscar()
     {
-        lista = ocupacionBLL.GetList(o => true);
+        lista = await ocupacionBLL.GetList(o => true);
         if (Criterio != null)
         {
             switch (Filtro)
             {
                 case "0":
-                    lista = ocupacionBLL.GetList(o => true);
+                    lista = await ocupacionBLL.GetList(o => true);
                     break;
                 case "1":
-                    lista = ocupacionBLL.GetList(o => o.OcupacionId.ToString() == (Criterio));
+                    lista = await ocupacionBLL.GetList(o => o.OcupacionId.ToString() == (Criterio));
                     break;
                 case "3":
-                    lista = ocupacionBLL.GetList(o => o.Descripcion.ToString() == (Criterio));
+                    lista = await ocupacionBLL.GetList(o => o.Descripcion.ToString() == (Criterio));
                     break;
             }
         }
         else
         {
-            lista = ocupacionBLL.GetList(o => true);
+            lista = await ocupacionBLL.GetList(o => true);
         }
     }
 

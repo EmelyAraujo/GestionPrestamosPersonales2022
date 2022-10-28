@@ -144,9 +144,9 @@
     }
     
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        listaOcupaciones = OcupacionesBLL.GetList(o => true);
+        listaOcupaciones = await OcupacionesBLL.GetList(o => true);
         if (PersonasId > 0)
         {
 
@@ -155,11 +155,11 @@
         }
     }
 
-    public void Guardar()
+    public async Task Guardar()
     {
         bool guardo;
 
-        guardo = PersonasBLL.Guardar(this.persona);
+        guardo = await PersonasBLL.Guardar(this.persona);
 
         if (guardo)
         {
@@ -186,11 +186,11 @@
 
 
     }
-    private void Buscar()
+    private async Task Buscar()
     {
         if (persona.PersonaId > 0)
         {
-            var encontrado = PersonasBLL.Buscar(persona.PersonaId);
+            var encontrado = await PersonasBLL.Buscar(persona.PersonaId);
 
             if (encontrado != null)
                 this.persona = encontrado;
@@ -207,11 +207,11 @@
         }
     }
 
-    public void Eliminar()
+    public async Task Eliminar()
     {
         bool elimino;
 
-        elimino = PersonasBLL.Eliminar(persona);
+        elimino = await PersonasBLL.Eliminar(persona);
 
         if (elimino)
         {

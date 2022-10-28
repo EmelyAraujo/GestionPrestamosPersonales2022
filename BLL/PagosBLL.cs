@@ -43,7 +43,7 @@ public class PagosBLL
         _contexto.Entry(pago).State = EntityState.Detached;
         return cantidad;
     }
-
+    
     public async Task<bool> Modificar(Pagos pago)
     {
         var pagoAnterior = await _contexto.Pagos

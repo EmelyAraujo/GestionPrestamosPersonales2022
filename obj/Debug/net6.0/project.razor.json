@@ -12,105 +12,6 @@
   "ProjectWorkspaceState": {
     "TagHelpers": [
       {
-        "HashCode": -634902331,
-        "Kind": "Components.Component",
-        "Name": "GestionPrestamosPersonales2022.Pages.Consultas.C_Ocupaciones",
-        "AssemblyName": "GestionPrestamosPersonales2022",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "C_Ocupaciones"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "GestionPrestamosPersonales2022.Pages.Consultas.C_Ocupaciones"
-        }
-      },
-      {
-        "HashCode": 247985038,
-        "Kind": "Components.Component",
-        "Name": "GestionPrestamosPersonales2022.Pages.Consultas.C_Ocupaciones",
-        "AssemblyName": "GestionPrestamosPersonales2022",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "GestionPrestamosPersonales2022.Pages.Consultas.C_Ocupaciones"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "GestionPrestamosPersonales2022.Pages.Consultas.C_Ocupaciones",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "HashCode": -926603985,
-        "Kind": "Components.Component",
-        "Name": "GestionPrestamosPersonales2022.Pages.Consultas.C_Pagos",
-        "AssemblyName": "GestionPrestamosPersonales2022",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "C_Pagos"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "GestionPrestamosPersonales2022.Pages.Consultas.C_Pagos"
-        }
-      },
-      {
-        "HashCode": 1658170389,
-        "Kind": "Components.Component",
-        "Name": "GestionPrestamosPersonales2022.Pages.Consultas.C_Pagos",
-        "AssemblyName": "GestionPrestamosPersonales2022",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "GestionPrestamosPersonales2022.Pages.Consultas.C_Pagos"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "GestionPrestamosPersonales2022.Pages.Consultas.C_Pagos",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "HashCode": -221647537,
-        "Kind": "Components.Component",
-        "Name": "GestionPrestamosPersonales2022.Pages.Consultas.C_Prestamos",
-        "AssemblyName": "GestionPrestamosPersonales2022",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "C_Prestamos"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "GestionPrestamosPersonales2022.Pages.Consultas.C_Prestamos"
-        }
-      },
-      {
-        "HashCode": 1774205268,
-        "Kind": "Components.Component",
-        "Name": "GestionPrestamosPersonales2022.Pages.Consultas.C_Prestamos",
-        "AssemblyName": "GestionPrestamosPersonales2022",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "GestionPrestamosPersonales2022.Pages.Consultas.C_Prestamos"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "GestionPrestamosPersonales2022.Pages.Consultas.C_Prestamos",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
         "HashCode": -1163864482,
         "Kind": "Components.Component",
         "Name": "GestionPrestamosPersonales2022.Pages.Index",
@@ -356,6 +257,105 @@
         }
       },
       {
+        "HashCode": -634902331,
+        "Kind": "Components.Component",
+        "Name": "GestionPrestamosPersonales2022.Pages.Consultas.C_Ocupaciones",
+        "AssemblyName": "GestionPrestamosPersonales2022",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "C_Ocupaciones"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "GestionPrestamosPersonales2022.Pages.Consultas.C_Ocupaciones"
+        }
+      },
+      {
+        "HashCode": 247985038,
+        "Kind": "Components.Component",
+        "Name": "GestionPrestamosPersonales2022.Pages.Consultas.C_Ocupaciones",
+        "AssemblyName": "GestionPrestamosPersonales2022",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "GestionPrestamosPersonales2022.Pages.Consultas.C_Ocupaciones"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "GestionPrestamosPersonales2022.Pages.Consultas.C_Ocupaciones",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -926603985,
+        "Kind": "Components.Component",
+        "Name": "GestionPrestamosPersonales2022.Pages.Consultas.C_Pagos",
+        "AssemblyName": "GestionPrestamosPersonales2022",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "C_Pagos"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "GestionPrestamosPersonales2022.Pages.Consultas.C_Pagos"
+        }
+      },
+      {
+        "HashCode": 1658170389,
+        "Kind": "Components.Component",
+        "Name": "GestionPrestamosPersonales2022.Pages.Consultas.C_Pagos",
+        "AssemblyName": "GestionPrestamosPersonales2022",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "GestionPrestamosPersonales2022.Pages.Consultas.C_Pagos"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "GestionPrestamosPersonales2022.Pages.Consultas.C_Pagos",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -221647537,
+        "Kind": "Components.Component",
+        "Name": "GestionPrestamosPersonales2022.Pages.Consultas.C_Prestamos",
+        "AssemblyName": "GestionPrestamosPersonales2022",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "C_Prestamos"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "GestionPrestamosPersonales2022.Pages.Consultas.C_Prestamos"
+        }
+      },
+      {
+        "HashCode": 1774205268,
+        "Kind": "Components.Component",
+        "Name": "GestionPrestamosPersonales2022.Pages.Consultas.C_Prestamos",
+        "AssemblyName": "GestionPrestamosPersonales2022",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "GestionPrestamosPersonales2022.Pages.Consultas.C_Prestamos"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "GestionPrestamosPersonales2022.Pages.Consultas.C_Prestamos",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
         "HashCode": 471336975,
         "Kind": "Components.Component",
         "Name": "GestionPrestamosPersonales2022.App",
@@ -385,39 +385,6 @@
         "Metadata": {
           "Runtime.Name": "Components.IComponent",
           "Common.TypeName": "GestionPrestamosPersonales2022.App",
-          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
-        }
-      },
-      {
-        "HashCode": -1657607446,
-        "Kind": "Components.Component",
-        "Name": "GestionPrestamosPersonales2022.Shared.LoginDisplay",
-        "AssemblyName": "GestionPrestamosPersonales2022",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "LoginDisplay"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "GestionPrestamosPersonales2022.Shared.LoginDisplay"
-        }
-      },
-      {
-        "HashCode": -1509197592,
-        "Kind": "Components.Component",
-        "Name": "GestionPrestamosPersonales2022.Shared.LoginDisplay",
-        "AssemblyName": "GestionPrestamosPersonales2022",
-        "CaseSensitive": true,
-        "TagMatchingRules": [
-          {
-            "TagName": "GestionPrestamosPersonales2022.Shared.LoginDisplay"
-          }
-        ],
-        "Metadata": {
-          "Runtime.Name": "Components.IComponent",
-          "Common.TypeName": "GestionPrestamosPersonales2022.Shared.LoginDisplay",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },
@@ -567,6 +534,39 @@
           "Runtime.Name": "Components.None",
           "Common.TypeName": "GestionPrestamosPersonales2022.Shared.MainLayout.Body",
           "Components.IsSpecialKind": "Components.ChildContent",
+          "Components.NameMatch": "Components.FullyQualifiedNameMatch"
+        }
+      },
+      {
+        "HashCode": -1657607446,
+        "Kind": "Components.Component",
+        "Name": "GestionPrestamosPersonales2022.Shared.LoginDisplay",
+        "AssemblyName": "GestionPrestamosPersonales2022",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "LoginDisplay"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "GestionPrestamosPersonales2022.Shared.LoginDisplay"
+        }
+      },
+      {
+        "HashCode": -1509197592,
+        "Kind": "Components.Component",
+        "Name": "GestionPrestamosPersonales2022.Shared.LoginDisplay",
+        "AssemblyName": "GestionPrestamosPersonales2022",
+        "CaseSensitive": true,
+        "TagMatchingRules": [
+          {
+            "TagName": "GestionPrestamosPersonales2022.Shared.LoginDisplay"
+          }
+        ],
+        "Metadata": {
+          "Runtime.Name": "Components.IComponent",
+          "Common.TypeName": "GestionPrestamosPersonales2022.Shared.LoginDisplay",
           "Components.NameMatch": "Components.FullyQualifiedNameMatch"
         }
       },

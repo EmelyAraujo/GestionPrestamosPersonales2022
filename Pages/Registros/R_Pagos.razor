@@ -127,7 +127,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var item in pago.PagosDetalle)
+                    @foreach (var item in pago.Detalle)
                     {
                         <tr>
                             <td>@item.PrestamoId</td>
@@ -180,9 +180,9 @@
         return pago.Concepto.Contains(".");
     }
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        listaPersonasId = personasBLL.GetList(p => true);
+        listaPersonasId = await personasBLL.GetList(p => true);
         if (PagoId > 0)
         {
             this.pago.PagoId = PagoId;
@@ -191,7 +191,7 @@
         }
     }
 
-    public void Guardar()
+    public async Task Guardar()
     {
         bool guardo;
 
@@ -201,7 +201,7 @@
             return;
         }
 
-        guardo = pagosBLL.Guardar(this.pago);
+        guardo = await pagosBLL.Guardar(this.pago);
 
         if (guardo)
         {
@@ -228,11 +228,11 @@
 
 
     }
-    private void Buscar()
+    private async Task Buscar()
     {
         if (pago.PagoId > 0)
         {
-            var encontrado = pagosBLL.Buscar(pago.PagoId);
+            var encontrado = await pagosBLL.Buscar(pago.PagoId);
 
             if (encontrado != null)
                 this.pago = encontrado;
@@ -249,11 +249,11 @@
         }
     }
 
-    public void Eliminar()
+    public async Task Eliminar()
     {
         bool elimino;
 
-        elimino = pagosBLL.Eliminar(pago);
+        elimino = await pagosBLL.Eliminar(pago);
 
         if (elimino)
         {

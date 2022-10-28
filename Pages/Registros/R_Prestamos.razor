@@ -130,9 +130,9 @@
         return prestamo.Concepto.Contains(".");
     }
 
-    protected override void OnInitialized()
+    protected override async Task OnInitializedAsync()
     {
-        listaPersonasId = PersonasBLL.GetList(p => true);
+        listaPersonasId = await PersonasBLL.GetList(p => true);
         if (PrestamoId > 0)
         {
             this.prestamo.PrestamoId = PrestamoId;
@@ -141,7 +141,7 @@
         }
     }
 
-    public void Guardar()
+    public async Task Guardar()
     {
         bool guardo;
 
@@ -151,7 +151,7 @@
             return;
         }
 
-        guardo = PrestamosBLL.Guardar(this.prestamo);
+        guardo = await PrestamosBLL.Guardar(this.prestamo);
 
         if (guardo)
         {
@@ -178,11 +178,11 @@
 
 
     }
-    private void Buscar()
+    private async Task Buscar()
     {
         if (prestamo.PrestamoId > 0)
         {
-            var encontrado = PrestamosBLL.Buscar(prestamo.PrestamoId);
+            var encontrado = await PrestamosBLL.Buscar(prestamo.PrestamoId);
 
             if (encontrado != null)
                 this.prestamo = encontrado;
@@ -199,11 +199,11 @@
         }
     }
 
-    public void Eliminar()
+    public async Task Eliminar()
     {
-        bool elimino;
 
-        elimino = PrestamosBLL.Eliminar(prestamo);
+
+        bool elimino = await PrestamosBLL.Eliminar(prestamo);
 
         if (elimino)
         {

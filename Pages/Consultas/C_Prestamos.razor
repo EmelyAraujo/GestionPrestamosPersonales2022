@@ -67,27 +67,27 @@
     public List<Prestamos> lista { get; set; } = new List<Prestamos>();
     public string Filtro { get; set; }
     public string Criterio { get; set; }
-    public void Buscar()
+    public async Task Buscar()
     {
-        lista = prestamosBLL.GetList(o => true);
+        lista = await prestamosBLL.GetList(o => true);
         if (Criterio != null)
         {
             switch (Filtro)
             {
                 case "0":
-                    lista = prestamosBLL.GetList(o => true);
+                    lista = await prestamosBLL.GetList(o => true);
                     break;
                 case "1":
-                    lista = prestamosBLL.GetList(o => o.PrestamoId.ToString() == (Criterio));
+                    lista = await prestamosBLL.GetList(o => o.PrestamoId.ToString() == (Criterio));
                     break;
                 case "3":
-                    lista = prestamosBLL.GetList(o => o.PersonaId.ToString() == (Criterio));
+                    lista = await prestamosBLL.GetList(o => o.PersonaId.ToString() == (Criterio));
                     break;
             }
         }
         else
         {
-            lista = prestamosBLL.GetList(o => true);
+            lista = await prestamosBLL.GetList(o => true);
         }
     }
 
