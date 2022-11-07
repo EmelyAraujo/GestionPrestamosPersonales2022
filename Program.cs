@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using GestionPrestamosPersonales2022.Areas.Identity;
 using Radzen;
+using GestionPrestamosPersonales2022.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

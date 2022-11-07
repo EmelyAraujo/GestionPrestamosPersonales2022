@@ -1,6 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\bin",
+    "\\BLL",
+    "\\Pages",
+    "\\Shared"
   ],
+  "SelectedNode": "\\Areas",
   "PreviewInSolutionExplorer": false
 }
